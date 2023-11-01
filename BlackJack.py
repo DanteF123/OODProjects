@@ -65,7 +65,7 @@ class Game:
             deck.shuffle()
             local_players=self.players.copy()
 
-            print(f"local: {[x.name for x in local_players]}, glob{[x.name for x in self.players]}")
+
             def determine_winner(player,dealer):
                 print(f"{player.name} your hand is {player.hand}, dealer hand is {dealer.hand}")
                 if sum(dealer.hand)==21:
@@ -93,10 +93,8 @@ class Game:
                     player.money-=player.bet
 
                 if player.money<=0:
-                    print("hi")
-                    print([x.name for x in self.players])
                     self.players.remove(player)
-                    print([x.name for x in self.players])
+
 
             def fold(Player):
                 local_players.remove(Player)
@@ -166,7 +164,8 @@ class Game:
                 if input("play again? Y/N ")=="Y":
                     begin()
 
-        begin()
+        if len(self.players)>0:
+            begin()
 
 game=Game()
 game.play()
